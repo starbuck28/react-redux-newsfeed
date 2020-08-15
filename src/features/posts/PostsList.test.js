@@ -35,7 +35,7 @@ describe('PostsList', () => {
         useSelector.mockImplementation(() => { return initialState})
         let wrapper = shallow(<PostsList/>)
 
-        expect(wrapper.find('section').children()).toHaveLength(2)
+        expect(wrapper.find('.posts-list').children()).toHaveLength(2)
         expect(wrapper.find(SinglePost).at(0).prop('post')).toBe(initialState[0])
         expect(wrapper.find(SinglePost).at(1).prop('post')).toBe(initialState[1])
     })
@@ -44,7 +44,7 @@ describe('PostsList', () => {
         useSelector.mockImplementation(() => { return []})
         let wrapper = shallow(<PostsList/>)
 
-        expect(wrapper.find('section').children()).toHaveLength(0)
+        expect(wrapper.find('.posts-list').children()).toHaveLength(0)
     })
 })
 

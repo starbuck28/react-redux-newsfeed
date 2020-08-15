@@ -11,7 +11,7 @@ const PostsList = () => {
     ))
 
     return (
-        <StyledList>{renderedPosts}</StyledList>
+        <StyledList className="posts-list">{renderedPosts}</StyledList>
     )
 }
 
