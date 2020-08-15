@@ -18,8 +18,7 @@ const PostsList = () => {
 
 const StyledList = styled.section`
     background: #f7f7f7;
-    width: 500px;
-    padding: 12.5px;
+    width: 95%;
     `
 
 export default PostsList
