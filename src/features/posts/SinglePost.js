@@ -1,6 +1,7 @@
 import React from 'react'
 import profilePicture from '../../maya.jpg'
 import styled from 'styled-components'
+import TimePassed from './TimePassed'
 
 const SinglePost = ({ post }) => {
     return (
@@ -12,6 +13,7 @@ const SinglePost = ({ post }) => {
                     <LocationSection>
                         <ProfileLocation className="location">{post.user.location}</ProfileLocation>
                     </LocationSection>
+                    <TimePassed timestamp={post.date}></TimePassed>
                 </ProfileInfo>
             </ProfileSection>
             <p className="post-content">{post.content}</p>
@@ -62,6 +64,5 @@ const ProfileLocation = styled(ProfileText)`
     margin-left: 5px;
     font-weight: bold;
     `
-
 
 export default SinglePost
