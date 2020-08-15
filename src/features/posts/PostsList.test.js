@@ -2,8 +2,8 @@ import React from 'react';
 import PostsList from './PostsList'
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import configureMockStore from 'redux-mock-store'
 import { useSelector } from 'react-redux'
+import SinglePost from './SinglePost';
 
 configure({ adapter: new Adapter() })
 
@@ -20,7 +20,7 @@ describe('PostsList', () => {
                     name: 'Brutus Buckeye',
                     location: 'Columbus'
                 },
-                content: 'O-H-I-O!',
+                content: 'O-H-I-O!'
             },
             {
                 id: '2',
@@ -36,6 +36,8 @@ describe('PostsList', () => {
         let wrapper = shallow(<PostsList/>)
 
         expect(wrapper.find('section').children()).toHaveLength(2)
+        expect(wrapper.find(SinglePost).at(0).prop('post')).toBe(initialState[0])
+        expect(wrapper.find(SinglePost).at(1).prop('post')).toBe(initialState[1])
     })
 
     it ('does not render posts if there are none', () => {

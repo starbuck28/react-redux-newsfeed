@@ -1,17 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import SinglePost from './SinglePost'
 
 const PostsList = () => {
     const posts = useSelector(state => state.posts)
 
     const renderedPosts = posts.map(post => (
-        <article key={post.id}>
-            <div>
-                <p>{post.user.name}</p>
-                <p>{post.user.location}</p>
-            </div>
-            <p>{post.content}</p>
-        </article>
+        <SinglePost key={post.id} post={post}/>
     ))
 
     return (
