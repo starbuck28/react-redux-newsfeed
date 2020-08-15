@@ -11,14 +11,7 @@ const PostForm = () => {
 
     const onPostClicked = () => {
         if (content) {
-            dispatch(addPost({
-                id: nanoid(),
-                user: {
-                    name: 'Maya',
-                    location: 'Pandora'
-                },
-                content
-            }))
+            dispatch(addPost(content))
             setContent("")
         }
     }
