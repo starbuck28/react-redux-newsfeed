@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
+import PostsList from './features/posts/PostsList';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Hello!</h1>
+        <PostsList/>
       </header>
     </div>
   );
