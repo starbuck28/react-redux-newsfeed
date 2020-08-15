@@ -14,6 +14,6 @@ describe('PostForm', () => {
     it ('renders the correct form elements', () => {
         let wrapper = shallow(<PostForm/>)
         expect(wrapper.find('#postContent')).toHaveLength(1)
-        expect(wrapper.find('button')).toHaveLength(1)
+        expect(wrapper.find('.post-button')).toHaveLength(1)
     })
 })

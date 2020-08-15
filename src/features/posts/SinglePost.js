@@ -20,6 +20,15 @@ const SinglePost = ({ post }) => {
                 </ProfileInfo>
             </ProfileSection>
             <StyledContent className="post-content">{post.content}</StyledContent>
+            <StyledCounterDiv>
+                <span className="likes">0 Likes</span>
+                    <Dot>&#183;</Dot>
+                <span>0 Comments</span>
+            </StyledCounterDiv>
+            <div>
+                <StyledButton><ButtonIcon icon={faHeart}/>Like</StyledButton>
+                <StyledButton><ButtonIcon icon={faCommentDots}/>Comment</StyledButton>
+            </div>
         </StyledPost>
     )
 }
@@ -72,6 +81,30 @@ const ProfileLocation = styled(ProfileText)`
 
 const StyledContent = styled.p`
     font-size: 18px;
+`
+
+const StyledCounterDiv = styled.div`
+    color: #979AA8;
+    font-size: 12px;
+`
+
+const Dot = styled.span`
+    font-weight: 900;
+    margin-right: 5px;
+    margin-left: 5px;
+`
+
+const StyledButton = styled.button`
+    color: #737384;
+    border: none;
+    background-color: #f7f7f7;
+    &:focus {
+        outline: none;
+      }
+`
+
+const ButtonIcon = styled(FontAwesomeIcon)`
+    margin-right: 5px;
 `
 
 export default SinglePost

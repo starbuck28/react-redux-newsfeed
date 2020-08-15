@@ -32,7 +32,10 @@ const PostForm = () => {
                 </StyledInputDiv>
                 <Divider></Divider>
                 <StyledButtonSection>
-                    <StyledButton type="button" onClick={onPostClicked}>Post It</StyledButton>
+                    <StyledButton 
+                        className="post-button" 
+                        type="button" 
+                        onClick={onPostClicked}>Post It</StyledButton>
                 </StyledButtonSection>
             </StyledForm>
         </StyledSection>
