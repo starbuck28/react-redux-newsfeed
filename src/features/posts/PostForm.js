@@ -1,9 +1,27 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { nanoid } from '@reduxjs/toolkit'
+import { addPost } from './postsSlice'
 
 const PostForm = () => {
-    const [text, setText] = useState("")
+    const [content, setContent] = useState("")
+    const dispatch = useDispatch()
     
-    const onTextChanged = event => setText(event.value.target)
+    const onTextChanged = event => setContent(event.target.value)
+
+    const onPostClicked = () => {
+        if (content) {
+            dispatch(addPost({
+                id: nanoid(),
+                user: {
+                    name: 'Maya',
+                    location: 'Pandora'
+                },
+                content
+            }))
+            setContent("")
+        }
+    }
 
     return (
         <section>
@@ -11,10 +29,10 @@ const PostForm = () => {
                 <input 
                     type="text"
                     id="postContent"
-                    value={text}
+                    value={content}
                     onChange={onTextChanged}>
                 </input>
-                <button type="button">Post It</button>
+                <button type="button" onClick={onPostClicked}>Post It</button>
             </form>
         </section>
     )
