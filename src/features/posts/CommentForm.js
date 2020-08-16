@@ -28,16 +28,38 @@ const CommentForm = ({ post }) => {
     }
 
     return (
-        <form onSubmit={onCommentSubmit}>
-            <img src={profilePicture} alt="profile"/>
-            <input 
+        <StyledForm onSubmit={onCommentSubmit}>
+            <StyledPhoto src={profilePicture} alt="profile"/>
+            <StyledInput 
                 type="text"
                 id="postComment"
                 placeholder="Add a comment"
                 value={content}
-                onChange={onTextChanged}></input>
-        </form>
+                onChange={onTextChanged}></StyledInput>
+        </StyledForm>
     )
 }
+
+const StyledForm = styled.form`
+    display: flex;
+    margin-top: 10px;git
+    `
+
+const StyledPhoto = styled.img`
+    width: 35px;
+    border-radius: 50%;
+    `
+
+const StyledInput = styled.input`
+    flex-grow: 4;
+    padding-left: 15px;
+    border-radius: 35px;
+    margin-left: 10px;
+    border: 1px solid #979AA8;
+
+    &:focus {
+    outline: none;
+    }
+    `
 
 export default CommentForm

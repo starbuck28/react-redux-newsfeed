@@ -9,19 +9,26 @@ import CommentForm from './CommentForm'
 const PostReactions = ({ post }) => {
     const dispatch = useDispatch()
     return (
-        <div>
+        <StyledReactions>
             <StyledButton 
                 type="button"
                 className="like-button"
                 onClick={() => dispatch(incrementLike({postId: post.id}))}><ButtonIcon icon={faHeart}/>Like</StyledButton>
             <StyledButton><ButtonIcon icon={faCommentDots}/>Comment</StyledButton>
             <CommentForm post={post}/>
-        </div>
+        </StyledReactions>
     )
 }
 
+const StyledReactions = styled.div`
+    padding: 10px 20px 0px 20px;
+    background: #f7f7f7;
+    `
+
 const StyledButton = styled.button`
     color: #737384;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border: none;
     background-color: #f7f7f7;
     &:focus {

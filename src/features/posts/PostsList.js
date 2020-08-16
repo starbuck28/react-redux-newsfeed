@@ -17,7 +17,6 @@ const PostsList = () => {
 }
 
 const StyledList = styled.section`
-    background: #f7f7f7;
     width: 95%;
     `
 
