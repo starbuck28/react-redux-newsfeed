@@ -139,6 +139,7 @@ const postsSlice = createSlice({
                 
                 if (existingComment) {
                     postComments.splice(postComments.indexOf(existingComment), 1)
+                    existingPost.comments.total -= 1
                 }
             }
         },

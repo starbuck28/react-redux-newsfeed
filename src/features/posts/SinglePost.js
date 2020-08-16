@@ -12,7 +12,7 @@ const SinglePost = ({ post }) => {
                 <StyledCounterDiv>
                     <span className="likes">{post.likes} Likes</span>
                         <Dot>&#183;</Dot>
-                    <span>0 Comments</span>
+                    <span>{post.comments.total} Comments</span>
                 </StyledCounterDiv>
             </StyledDisplayInfo>
             <Divider></Divider>
