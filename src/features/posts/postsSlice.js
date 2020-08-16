@@ -94,10 +94,23 @@ const postsSlice = createSlice({
                 } 
             }
             
+        },
+        editComment(state, action) {
+            const {postId, commentId, content} = action.payload
+            const existingPost = state.find(post => post.id === postId)
+            if (existingPost) {
+                const postComments = existingPost.comments.individualComments
+                const existingComment = postComments
+                    .find(comment => comment.id === commentId)
+                
+                if(existingComment) {
+                    existingComment.content = content
+                }
+            }
         }
     }
 })
 
-export const { addPost, incrementLike, addComment, incrementCommentLike } = postsSlice.actions
+export const { addPost, incrementLike, addComment, incrementCommentLike, editComment } = postsSlice.actions
 
 export default postsSlice.reducer

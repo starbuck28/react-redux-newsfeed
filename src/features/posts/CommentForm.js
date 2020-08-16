@@ -5,7 +5,6 @@ import { addComment } from './postsSlice'
 import profilePicture from '../../maya.jpg'
 import styled from 'styled-components'
 
-
 const CommentForm = ({ post }) => {
     const [content, setContent] = useState("")
     const dispatch = useDispatch()

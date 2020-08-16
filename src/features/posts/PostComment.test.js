@@ -25,14 +25,18 @@ beforeEach(() => {
     
 describe('PostComment', () => {
     it ('renders the correct info for user making comment', () => {
-        expect(wrapper.find('.user-name').text()).toEqual(comment.user.name)
-        expect(wrapper.find('.user-location').text()).toEqual(comment.user.location)
-        expect(wrapper.find('.user-comment').text()).toEqual(comment.content)
+        expect(wrapper.find('[data-testid="user-name"]').text()).toEqual(comment.user.name)
+        expect(wrapper.find('[data-testid="user-location"]').text()).toEqual(comment.user.location)
+        expect(wrapper.find('[data-testid="user-comment"]').text()).toEqual(comment.content)
     })
 
     it('passes the correct props to custom components', () => {
-        expect(wrapper.find('.time-passed').prop('timestamp')).toEqual(comment.date)
-        expect(wrapper.find('.comment-reactions').prop('postId')).toEqual(postId)
-        expect(wrapper.find('.comment-reactions').prop('comment')).toEqual(comment)
+        expect(wrapper.find('[data-testid="time-passed"]').prop('timestamp')).toEqual(comment.date)
+        expect(wrapper.find('[data-testid="comment-reactions"]').prop('postId')).toEqual(postId)
+        expect(wrapper.find('[data-testid="comment-reactions"]').prop('comment')).toEqual(comment)
+        expect(wrapper.find('[data-testid="edit-comment-form"]').prop('postId')).toEqual(postId)
+        expect(wrapper.find('[data-testid="edit-comment-form"]').prop('comment')).toEqual(comment)
+
+
     })
 })

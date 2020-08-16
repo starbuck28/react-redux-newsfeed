@@ -3,6 +3,7 @@ import profilePicture from '../../maya.jpg'
 import styled from 'styled-components'
 import TimePassed from './TimePassed'
 import CommentReactions from './CommentReactions'
+import EditCommentForm from './EditCommentForm'
 
 const PostComment = ({ postId, comment }) => {
     return (
@@ -10,14 +11,14 @@ const PostComment = ({ postId, comment }) => {
             <StyledImage src={profilePicture} alt="profile"/>
             <StyledInfo>
                 <SplitInfo>
-                    <StyledName className="user-name">{comment.user.name}</StyledName>
-                    <TimePassed className="time-passed" timestamp={comment.date}/>
+                    <StyledName data-testid="user-name">{comment.user.name}</StyledName>
+                    <TimePassed data-testid="time-passed" timestamp={comment.date}/>
                 </SplitInfo>
-                <StyledLocation className="user-location">{comment.user.location}</StyledLocation>
-                <span className="user-comment">{comment.content}</span>
-                <CommentReactions className="comment-reactions" postId={postId} comment={comment}/>
+                <StyledLocation data-testid="user-location">{comment.user.location}</StyledLocation>
+                <span data-testid="user-comment">{comment.content}</span>
+                <CommentReactions data-testid="comment-reactions" postId={postId} comment={comment}/>
             </StyledInfo>
-            
+            <EditCommentForm data-testid="edit-comment-form" postId={postId} comment={comment}/>
         </StyledComment>
     )
 }
