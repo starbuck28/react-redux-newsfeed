@@ -10,6 +10,7 @@ const initialState = [
             location: 'Pandora'
         },
         content: 'This is my very first post!',
+        likes: 0
     },
     {
         id: '2',
@@ -18,7 +19,8 @@ const initialState = [
             name: 'Maya',
             location: 'Pandora'
         },
-        content: 'Claptrap, where are you?'
+        content: 'Claptrap, where are you?',
+        likes: 0
     }
 ]
 
@@ -39,14 +41,22 @@ const postsSlice = createSlice({
                             name: 'Maya',
                             location: 'Pandora'
                         },
-                        content
+                        content,
+                        likes: 0
                     }
                 }
             }
-        } 
+        },
+        incrementLike(state, action) {
+            const {postId} = action.payload
+            const existingPost = state.find(post => post.id === postId)
+            if (existingPost) {
+                existingPost.likes += 1
+            }
+        }
     }
 })
 
-export const { addPost } = postsSlice.actions
+export const { addPost, incrementLike } = postsSlice.actions
 
 export default postsSlice.reducer

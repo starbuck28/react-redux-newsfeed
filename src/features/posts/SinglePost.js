@@ -4,8 +4,12 @@ import styled from 'styled-components'
 import TimePassed from './TimePassed'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faMapMarker, faCommentDots, faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch } from 'react-redux'
+import { incrementLike } from './postsSlice'
 
 const SinglePost = ({ post }) => {
+    const dispatch = useDispatch()
+
     return (
         <StyledPost>
             <ProfileSection>
@@ -21,12 +25,15 @@ const SinglePost = ({ post }) => {
             </ProfileSection>
             <StyledContent className="post-content">{post.content}</StyledContent>
             <StyledCounterDiv>
-                <span className="likes">0 Likes</span>
+                <span className="likes">{post.likes} Likes</span>
                     <Dot>&#183;</Dot>
                 <span>0 Comments</span>
             </StyledCounterDiv>
             <div>
-                <StyledButton><ButtonIcon icon={faHeart}/>Like</StyledButton>
+                <StyledButton 
+                    type="button"
+                    className="like-button"
+                    onClick={() => dispatch(incrementLike({postId: post.id}))}><ButtonIcon icon={faHeart}/>Like</StyledButton>
                 <StyledButton><ButtonIcon icon={faCommentDots}/>Comment</StyledButton>
             </div>
         </StyledPost>
