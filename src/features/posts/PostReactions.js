@@ -5,9 +5,17 @@ import { faHeart, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
 import { incrementLike } from './postsSlice'
 import CommentForm from './CommentForm'
+import { orderByMostRecent } from '../../transformers'
+import PostComment from './PostComment'
 
 const PostReactions = ({ post }) => {
     const dispatch = useDispatch()
+    const comments = post.comments.individualComments
+    console.log(comments)
+
+    const renderedComments = orderByMostRecent(comments).map(comment => (
+        <PostComment key={comment.id} comment={comment}/>
+    ))
     return (
         <StyledReactions>
             <StyledButton 
@@ -16,6 +24,11 @@ const PostReactions = ({ post }) => {
                 onClick={() => dispatch(incrementLike({postId: post.id}))}><ButtonIcon icon={faHeart}/>Like</StyledButton>
             <StyledButton><ButtonIcon icon={faCommentDots}/>Comment</StyledButton>
             <CommentForm post={post}/>
+            {renderedComments && 
+            <div>
+               {renderedComments} 
+            </div>
+            }
         </StyledReactions>
     )
 }

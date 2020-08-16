@@ -10,7 +10,11 @@ const initialState = [
             location: 'Pandora'
         },
         content: 'This is my very first post!',
-        likes: 0
+        likes: 0,
+        comments: {
+            total: 0, 
+            individualComments: []
+        }
     },
     {
         id: '2',
@@ -27,11 +31,11 @@ const initialState = [
                 { 
                     id: '123',
                     user: {
-                        name: 'Handsome Jack',
+                        name: 'Maya',
                         location: 'Pandora'
                     },
                     date: sub(new Date(), { minutes: 20 }).toISOString(),
-                    content: 'I found you!'
+                    content: 'Seriously, where are you?'
                 }
             ]
         }
