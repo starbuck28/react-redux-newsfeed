@@ -72,6 +72,7 @@ describe('PostReactions', () => {
                 },
                 content: 'Me want cookie.',
                 likes: 5,
+                showComments: true,
                 comments: {
                     likes: 0,
                     individualComments: listOfComments
@@ -84,9 +85,9 @@ describe('PostReactions', () => {
             return orderedListOfComments
         })
 
-        expect(wrapper.find('.rendered-comments').children()).toHaveLength(2)
-        expect(wrapper.find('.rendered-comments').childAt(0).prop('comment')).toEqual(post.comments.individualComments[1])
-        expect(wrapper.find('.rendered-comments').childAt(1).prop('comment')).toEqual(post.comments.individualComments[0])
+        expect(wrapper.find('[data-testid="rendered-comments"]').children()).toHaveLength(2)
+        expect(wrapper.find('[data-testid="rendered-comments"]').childAt(0).prop('comment')).toEqual(post.comments.individualComments[1])
+        expect(wrapper.find('[data-testid="rendered-comments"]').childAt(1).prop('comment')).toEqual(post.comments.individualComments[0])
     })
 
     it('does not display comments if there are none', () => {
@@ -99,6 +100,7 @@ describe('PostReactions', () => {
             },
             content: 'Me want cookie.',
             likes: 5,
+            showComments: true,
             comments: {
                 likes: 0,
                 individualComments: []
@@ -111,6 +113,32 @@ describe('PostReactions', () => {
 
         let wrapper = shallow(<PostReactions post={post}/>)
 
-        expect(wrapper.find('.rendered-comments').children()).toHaveLength(0)
+        expect(wrapper.find('[data-testid="rendered-comments"]').children()).toHaveLength(0)
+    })
+
+    it('does not show comments if state is set to hide comments', () => {
+        const post = {
+            id: '1',
+            date: sub(new Date(), { minutes: 2 }).toISOString(),
+            user: {
+                name: 'Cookie Monster',
+                location: 'Sesame Street'
+            },
+            content: 'Me want cookie.',
+            likes: 5,
+            showComments: false,
+            comments: {
+                likes: 0,
+                individualComments: listOfComments
+            }
+        }
+    
+        let wrapper = shallow(<PostReactions post={post}/>)
+
+        orderByMostRecent.mockImplementation(() => {
+            return orderedListOfComments
+        })
+
+        expect(wrapper.find('[data-testid="rendered-comments"]').children()).toHaveLength(0)
     })
 })

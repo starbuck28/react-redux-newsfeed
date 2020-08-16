@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
-import { incrementPostLike } from './postsSlice'
+import { incrementPostLike, toggleCommentSection } from './postsSlice'
 import CommentForm from './CommentForm'
 import { orderByMostRecent } from '../../transformers'
 import PostComment from './PostComment'
@@ -15,18 +15,33 @@ const PostReactions = ({ post }) => {
     const renderedComments = orderByMostRecent(comments).map(comment => (
         <PostComment key={comment.id} postId={post.id} comment={comment}/>
     ))
+
+    const handleLikeButtonClick = () => dispatch(incrementPostLike({postId: post.id}))
+    const handleCommentButtonClick = () => dispatch(toggleCommentSection({postId: post.id, showComments: !post.showComments}))
+
     return (
         <StyledReactions>
             <StyledButton 
                 type="button"
-                className="like-button"
-                onClick={() => dispatch(incrementPostLike({postId: post.id}))}><ButtonIcon icon={faHeart}/>Like</StyledButton>
-            <StyledButton><ButtonIcon icon={faCommentDots}/>Comment</StyledButton>
-            <CommentForm post={post}/>
-            {renderedComments && 
-            <div className="rendered-comments">
-               {renderedComments} 
-            </div>
+                data-testid="like-button"
+                onClick={handleLikeButtonClick}>
+                    <ButtonIcon icon={faHeart}/>
+                    Like
+            </StyledButton>
+            <StyledButton
+                type="button"
+                data-testid="post-comment-button"
+                onClick={handleCommentButtonClick}>
+                    <ButtonIcon icon={faCommentDots}/>
+                    Comment
+            </StyledButton>
+            {post.showComments && 
+                <CommentForm post={post}/>
+            }   
+            {renderedComments && post.showComments &&
+                <div data-testid="rendered-comments">
+                {renderedComments} 
+                </div>
             }
         </StyledReactions>
     )

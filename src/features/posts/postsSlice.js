@@ -11,6 +11,7 @@ const initialState = [
         },
         content: 'This is my very first post!',
         likes: 0,
+        showComments: false,
         comments: {
             total: 0, 
             individualComments: []
@@ -25,6 +26,7 @@ const initialState = [
         },
         content: 'Claptrap, where are you?',
         likes: 0,
+        showComments: false,
         comments: {
             total: 1,
             individualComments: [
@@ -63,6 +65,7 @@ const postsSlice = createSlice({
                         },
                         content,
                         likes: 0,
+                        showComments: false,
                         comments: {
                             total: 0,
                             individualComments: []
@@ -138,6 +141,13 @@ const postsSlice = createSlice({
                     postComments.splice(postComments.indexOf(existingComment), 1)
                 }
             }
+        },
+        toggleCommentSection(state, action) {
+            const {postId, showComments} = action.payload
+            const existingPost = state.find(post => post.id === postId)
+            if (existingPost) {
+                existingPost.showComments = showComments
+            }
         }
     }
 })
@@ -149,7 +159,8 @@ export const {
     incrementCommentLike, 
     editComment, 
     toggleEditForm, 
-    deleteComment } = postsSlice.actions
+    deleteComment,
+    toggleCommentSection } = postsSlice.actions
 
 export default postsSlice.reducer
 
