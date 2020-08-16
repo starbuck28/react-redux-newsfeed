@@ -35,7 +35,8 @@ const initialState = [
                         location: 'Pandora'
                     },
                     date: sub(new Date(), { minutes: 20 }).toISOString(),
-                    content: 'Seriously, where are you?'
+                    content: 'Seriously, where are you?',
+                    likes: 0
                 }
             ]
         }
@@ -65,7 +66,7 @@ const postsSlice = createSlice({
                 }
             }
         },
-        incrementLike(state, action) {
+        incrementPostLike(state, action) {
             const {postId} = action.payload
             const existingPost = state.find(post => post.id === postId)
             if (existingPost) {
@@ -79,10 +80,24 @@ const postsSlice = createSlice({
                 existingPost.comments.total++
                 existingPost.comments.individualComments.push(comment)
             }
+        },
+        incrementCommentLike(state, action) {
+            const {postId, commentId} = action.payload
+            const existingPost = state.find(post => post.id === postId)
+            if (existingPost) {
+                const postComments = existingPost.comments.individualComments
+                const existingComment = postComments
+                    .find(comment => comment.id === commentId)
+                
+                if (existingComment) {
+                    existingComment.likes += 1
+                } 
+            }
+            
         }
     }
 })
 
-export const { addPost, incrementLike, addComment } = postsSlice.actions
+export const { addPost, incrementLike, addComment, incrementCommentLike } = postsSlice.actions
 
 export default postsSlice.reducer

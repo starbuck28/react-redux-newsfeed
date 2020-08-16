@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
-import { incrementLike } from './postsSlice'
+import { incrementCommentLike } from './postsSlice'
 import CommentForm from './CommentForm'
 import { orderByMostRecent } from '../../transformers'
 import PostComment from './PostComment'
@@ -14,14 +14,14 @@ const PostReactions = ({ post }) => {
     console.log(comments)
 
     const renderedComments = orderByMostRecent(comments).map(comment => (
-        <PostComment key={comment.id} comment={comment}/>
+        <PostComment key={comment.id} postId={post.id} comment={comment}/>
     ))
     return (
         <StyledReactions>
             <StyledButton 
                 type="button"
                 className="like-button"
-                onClick={() => dispatch(incrementLike({postId: post.id}))}><ButtonIcon icon={faHeart}/>Like</StyledButton>
+                onClick={() => dispatch(incrementCommentLike({postId: post.id}))}><ButtonIcon icon={faHeart}/>Like</StyledButton>
             <StyledButton><ButtonIcon icon={faCommentDots}/>Comment</StyledButton>
             <CommentForm post={post}/>
             {renderedComments && 
