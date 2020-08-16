@@ -62,7 +62,11 @@ const postsSlice = createSlice({
                             location: 'Pandora'
                         },
                         content,
-                        likes: 0
+                        likes: 0,
+                        comments: {
+                            total: 0,
+                            individualComments: []
+                        }
                     }
                 }
             }
@@ -112,21 +116,41 @@ const postsSlice = createSlice({
         toggleEditForm(state, action) {
             const {postId, commentId, showCommentForm} = action.payload
             const existingPost = state.find(post => post.id === postId)
-            console.log(existingPost.id)
             if (existingPost) {
                 const postComments = existingPost.comments.individualComments
                 const existingComment = postComments
                     .find(comment => comment.id === commentId)
-                console.log(existingComment.id)
+
                     if (existingComment) {
                         existingComment.showCommentForm = showCommentForm
                     }
+            }
+        },
+        deleteComment(state, action) {
+            const {postId, commentId} = action.payload
+            const existingPost = state.find(post => post.id === postId)
+            if (existingPost) {
+                const postComments = existingPost.comments.individualComments
+                const existingComment = postComments
+                    .find(comment => comment.id === commentId)
+                
+                if (existingComment) {
+                    postComments.splice(postComments.indexOf(existingComment), 1)
+                }
             }
         }
     }
 })
 
-export const { addPost, incrementPostLike, addComment, incrementCommentLike, editComment, toggleEditForm } = postsSlice.actions
+export const { 
+    addPost, 
+    incrementPostLike, 
+    addComment, 
+    incrementCommentLike, 
+    editComment, 
+    toggleEditForm, 
+    deleteComment } = postsSlice.actions
 
 export default postsSlice.reducer
+
 

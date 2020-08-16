@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
-import { incrementCommentLike, toggleEditForm } from './postsSlice'
+import { incrementCommentLike, toggleEditForm, deleteComment } from './postsSlice'
 
 const CommentReactions = ({postId, comment}) => {
     const dispatch = useDispatch()
 
     const handleLikeClick = () => dispatch(incrementCommentLike({postId, commentId: comment.id}))
     const handleEditClick = () => dispatch(toggleEditForm({postId, commentId: comment.id, showCommentForm: !comment.showCommentForm}))
+    const handleDeleteClick = () => dispatch(deleteComment({postId, commentId: comment.id}))
 
     return (
         <StyledReactionsDiv>
@@ -33,8 +34,12 @@ const CommentReactions = ({postId, comment}) => {
             <span>|</span>
             <StyledButton 
                 type="button"
-                data-testid="comment-delete-button"><ButtonIcon icon={faTrash}/>Delete</StyledButton>
-            </StyledReactionsDiv>
+                data-testid="comment-delete-button"
+                onClick={handleDeleteClick}>
+                    <ButtonIcon icon={faTrash}/>
+                    Delete
+            </StyledButton>
+        </StyledReactionsDiv>
     )
 }
 
