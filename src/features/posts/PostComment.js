@@ -16,9 +16,9 @@ const PostComment = ({ postId, comment }) => {
                 </SplitInfo>
                 <StyledLocation data-testid="user-location">{comment.user.location}</StyledLocation>
                 <span data-testid="user-comment">{comment.content}</span>
+                <EditCommentForm data-testid="edit-comment-form" postId={postId} comment={comment}/>
                 <CommentReactions data-testid="comment-reactions" postId={postId} comment={comment}/>
             </StyledInfo>
-            <EditCommentForm data-testid="edit-comment-form" postId={postId} comment={comment}/>
         </StyledComment>
     )
 }

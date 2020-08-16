@@ -3,11 +3,13 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
-import { incrementCommentLike } from './postsSlice'
+import { incrementCommentLike, toggleEditForm } from './postsSlice'
 
 const CommentReactions = ({postId, comment}) => {
     const dispatch = useDispatch()
+
     const handleLikeClick = () => dispatch(incrementCommentLike({postId, commentId: comment.id}))
+    const handleEditClick = () => dispatch(toggleEditForm({postId, commentId: comment.id, showCommentForm: !comment.showCommentForm}))
 
     return (
         <StyledReactionsDiv>
@@ -23,7 +25,11 @@ const CommentReactions = ({postId, comment}) => {
             <span>|</span>
             <StyledButton 
                 type="button"
-                data-testid="comment-edit-button"><ButtonIcon icon={faPencilAlt}/>Edit</StyledButton>
+                data-testid="comment-edit-button"
+                onClick={handleEditClick}>
+                    <ButtonIcon icon={faPencilAlt}/>
+                    Edit
+            </StyledButton>
             <span>|</span>
             <StyledButton 
                 type="button"

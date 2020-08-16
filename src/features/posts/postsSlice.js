@@ -36,7 +36,8 @@ const initialState = [
                     },
                     date: sub(new Date(), { minutes: 20 }).toISOString(),
                     content: 'Seriously, where are you?',
-                    likes: 0
+                    likes: 0,
+                    showCommentForm: false
                 }
             ]
         }
@@ -103,14 +104,29 @@ const postsSlice = createSlice({
                 const existingComment = postComments
                     .find(comment => comment.id === commentId)
                 
-                if(existingComment) {
+                if (existingComment) {
                     existingComment.content = content
                 }
+            }
+        },
+        toggleEditForm(state, action) {
+            const {postId, commentId, showCommentForm} = action.payload
+            const existingPost = state.find(post => post.id === postId)
+            console.log(existingPost.id)
+            if (existingPost) {
+                const postComments = existingPost.comments.individualComments
+                const existingComment = postComments
+                    .find(comment => comment.id === commentId)
+                console.log(existingComment.id)
+                    if (existingComment) {
+                        existingComment.showCommentForm = showCommentForm
+                    }
             }
         }
     }
 })
 
-export const { addPost, incrementPostLike, addComment, incrementCommentLike, editComment } = postsSlice.actions
+export const { addPost, incrementPostLike, addComment, incrementCommentLike, editComment, toggleEditForm } = postsSlice.actions
 
 export default postsSlice.reducer
+
