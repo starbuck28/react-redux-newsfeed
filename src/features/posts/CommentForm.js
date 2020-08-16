@@ -21,7 +21,8 @@ const CommentForm = ({ post }) => {
                 location: 'Pandora'
             },
             date: new Date().toISOString(),
-            content
+            content,
+            likes: 0
         }
         dispatch(addComment({postId: post.id, comment}))
         setContent("")

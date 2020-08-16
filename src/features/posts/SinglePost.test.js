@@ -6,10 +6,6 @@ import { sub } from 'date-fns'
 
 configure({ adapter: new Adapter() })
 
-// jest.mock('react-redux', () => ({
-//     useDispatch: jest.fn()
-// }))
-
 describe('Single Post', () => {
     const post = { 
         id: '1',

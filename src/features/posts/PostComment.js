@@ -2,14 +2,9 @@ import React from 'react'
 import profilePicture from '../../maya.jpg'
 import styled from 'styled-components'
 import TimePassed from './TimePassed'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { incrementCommentLike } from './postsSlice'
-import { useDispatch } from 'react-redux'
+import CommentReactions from './CommentReactions'
 
 const PostComment = ({ postId, comment }) => {
-    const dispatch = useDispatch()
-    const handleLikeClick = () => dispatch(incrementCommentLike({postId, commentId: comment.id}))
     return (
         <StyledComment>
             <StyledImage src={profilePicture} alt="profile"/>
@@ -20,21 +15,7 @@ const PostComment = ({ postId, comment }) => {
                 </SplitInfo>
                 <StyledLocation>{comment.user.location}</StyledLocation>
                 <span>{comment.content}</span>
-                <div>
-                    <span>{comment.likes} Likes</span>
-                    <span>|</span>
-                    <button 
-                        type="button"
-                        className="comment-like"
-                        onClick={handleLikeClick}>
-                            <FontAwesomeIcon icon={faHeart}/>
-                            Like
-                    </button>
-                    <span>|</span>
-                    <button type="button"><FontAwesomeIcon icon={faPencilAlt}/>Edit</button>
-                    <span>|</span>
-                    <button type="button"><FontAwesomeIcon icon={faTrash}/>Delete</button>
-            </div>
+                <CommentReactions postId={postId} comment={comment}/>
             </StyledInfo>
             
         </StyledComment>

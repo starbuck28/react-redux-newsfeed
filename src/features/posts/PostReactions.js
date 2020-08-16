@@ -11,7 +11,6 @@ import PostComment from './PostComment'
 const PostReactions = ({ post }) => {
     const dispatch = useDispatch()
     const comments = post.comments.individualComments
-    console.log(comments)
 
     const renderedComments = orderByMostRecent(comments).map(comment => (
         <PostComment key={comment.id} postId={post.id} comment={comment}/>
@@ -25,7 +24,7 @@ const PostReactions = ({ post }) => {
             <StyledButton><ButtonIcon icon={faCommentDots}/>Comment</StyledButton>
             <CommentForm post={post}/>
             {renderedComments && 
-            <div>
+            <div className="rendered-comments">
                {renderedComments} 
             </div>
             }
