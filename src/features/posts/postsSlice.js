@@ -111,6 +111,6 @@ const postsSlice = createSlice({
     }
 })
 
-export const { addPost, incrementLike, addComment, incrementCommentLike, editComment } = postsSlice.actions
+export const { addPost, incrementPostLike, addComment, incrementCommentLike, editComment } = postsSlice.actions
 
 export default postsSlice.reducer
