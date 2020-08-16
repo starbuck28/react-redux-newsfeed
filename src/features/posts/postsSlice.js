@@ -20,7 +20,21 @@ const initialState = [
             location: 'Pandora'
         },
         content: 'Claptrap, where are you?',
-        likes: 0
+        likes: 0,
+        comments: {
+            total: 1,
+            individualComments: [
+                { 
+                    id: '123',
+                    user: {
+                        name: 'Handsome Jack',
+                        location: 'Pandora'
+                    },
+                    date: sub(new Date(), { minutes: 20 }).toISOString(),
+                    content: 'I found you!'
+                }
+            ]
+        }
     }
 ]
 
@@ -53,10 +67,18 @@ const postsSlice = createSlice({
             if (existingPost) {
                 existingPost.likes += 1
             }
+        },
+        addComment(state, action) {
+            const { postId, comment } = action.payload
+            const existingPost = state.find(post => post.id === postId)
+            if (existingPost) {
+                existingPost.comments.total++
+                existingPost.comments.individualComments.push(comment)
+            }
         }
     }
 })
 
-export const { addPost, incrementLike } = postsSlice.actions
+export const { addPost, incrementLike, addComment } = postsSlice.actions
 
 export default postsSlice.reducer

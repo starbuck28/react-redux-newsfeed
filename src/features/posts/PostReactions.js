@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
 import { incrementLike } from './postsSlice'
+import CommentForm from './CommentForm'
 
 const PostReactions = ({ post }) => {
     const dispatch = useDispatch()
@@ -14,6 +15,7 @@ const PostReactions = ({ post }) => {
                 className="like-button"
                 onClick={() => dispatch(incrementLike({postId: post.id}))}><ButtonIcon icon={faHeart}/>Like</StyledButton>
             <StyledButton><ButtonIcon icon={faCommentDots}/>Comment</StyledButton>
+            <CommentForm post={post}/>
         </div>
     )
 }
