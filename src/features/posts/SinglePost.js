@@ -25,7 +25,6 @@ const StyledPost = styled.article`
     margin-top: 12.5px;
     background: #ffffff;
     border-radius: 8px;
-    padding-bottom: 20px;
 `
 
 const StyledDisplayInfo = styled.div`
