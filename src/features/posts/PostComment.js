@@ -10,12 +10,12 @@ const PostComment = ({ postId, comment }) => {
             <StyledImage src={profilePicture} alt="profile"/>
             <StyledInfo>
                 <SplitInfo>
-                    <StyledName>{comment.user.name}</StyledName>
-                    <TimePassed timestamp={comment.date}/>
+                    <StyledName className="user-name">{comment.user.name}</StyledName>
+                    <TimePassed className="time-passed" timestamp={comment.date}/>
                 </SplitInfo>
-                <StyledLocation>{comment.user.location}</StyledLocation>
-                <span>{comment.content}</span>
-                <CommentReactions postId={postId} comment={comment}/>
+                <StyledLocation className="user-location">{comment.user.location}</StyledLocation>
+                <span className="user-comment">{comment.content}</span>
+                <CommentReactions className="comment-reactions" postId={postId} comment={comment}/>
             </StyledInfo>
             
         </StyledComment>
