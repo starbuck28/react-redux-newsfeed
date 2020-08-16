@@ -11,7 +11,7 @@ const CommentReactions = ({postId, comment}) => {
 
     return (
         <div>
-            <span>{comment.likes} Likes</span>
+            <span className="likes-count">{comment.likes} Likes</span>
             <span>|</span>
             <button 
                 type="button"
