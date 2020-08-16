@@ -10,22 +10,50 @@ const CommentReactions = ({postId, comment}) => {
     const handleLikeClick = () => dispatch(incrementCommentLike({postId, commentId: comment.id}))
 
     return (
-        <div>
-            <span className="likes-count">{comment.likes} Likes</span>
+        <StyledReactionsDiv>
+            <StyledCount className="likes-count">{comment.likes} Likes</StyledCount>
             <span>|</span>
-            <button 
+            <StyledButton 
                 type="button"
-                className="comment-like"
+                data-testid="comment-like-button"
                 onClick={handleLikeClick}>
-                    <FontAwesomeIcon icon={faHeart}/>
+                    <ButtonIcon icon={faHeart}/>
                     Like
-            </button>
+            </StyledButton>
             <span>|</span>
-            <button type="button"><FontAwesomeIcon icon={faPencilAlt}/>Edit</button>
+            <StyledButton 
+                type="button"
+                data-testid="comment-edit-button"><ButtonIcon icon={faPencilAlt}/>Edit</StyledButton>
             <span>|</span>
-            <button type="button"><FontAwesomeIcon icon={faTrash}/>Delete</button>
-            </div>
+            <StyledButton 
+                type="button"
+                data-testid="comment-delete-button"><ButtonIcon icon={faTrash}/>Delete</StyledButton>
+            </StyledReactionsDiv>
     )
 }
 
+const StyledReactionsDiv = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    `
+
+const StyledCount = styled.span`
+    padding-right: 10px;
+    `
+
+const StyledButton = styled.button`
+    color: #737384;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    background-color: #DAE1EA;
+    &:focus {
+        outline: none;
+      }
+    `
+
+const ButtonIcon = styled(FontAwesomeIcon)`
+    margin-right: 5px;
+    `
 export default CommentReactions

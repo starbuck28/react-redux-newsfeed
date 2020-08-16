@@ -3,6 +3,7 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import CommentReactions from './CommentReactions'
 import { sub } from 'date-fns'
+import { getByTestId } from '@testing-library/react';
 
 configure({ adapter: new Adapter() })
 
@@ -29,7 +30,10 @@ describe('CommentReactions', () => {
     })
     
     it('renders the correct buttons', () => {
-        expect(wrapper.find('button')).toHaveLength(3)
+        expect(wrapper.find('[data-testid="comment-like-button"]')).toHaveLength(1)
+        expect(wrapper.find('[data-testid="comment-edit-button"]')).toHaveLength(1)
+        expect(wrapper.find('[data-testid="comment-delete-button"]')).toHaveLength(1)
+       
     })
 
     it('renders the correct number of likes', () => {
