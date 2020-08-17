@@ -1,8 +1,14 @@
+This project is a sample newsfeed that allows the user to create posts and add comments to posts. Comments and posts are able to be liked. Comments are also able to be edited and deleted.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Installs all the needed dependencies.
 
 ### `npm start`
 
