@@ -197,6 +197,12 @@ describe('PostReactions', () => {
 
         wrapper.find('[data-testid="post-comment-button"]').simulate('click')
 
-        expect(mockDispatch).toHaveBeenCalledWith({"payload": {"postId": "1", showComments: true}, "type": "posts/toggleCommentSection"})
+        expect(mockDispatch).toHaveBeenCalledWith({   
+            "payload": {
+                "postId": "1", 
+                showComments: true
+                }, 
+            "type": "posts/toggleCommentSection"
+        })
     })
 })
