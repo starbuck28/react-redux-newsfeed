@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { nanoid } from '@reduxjs/toolkit'
 import { addComment } from './postsSlice'
 import profilePicture from '../../maya.jpg'
 import styled from 'styled-components'

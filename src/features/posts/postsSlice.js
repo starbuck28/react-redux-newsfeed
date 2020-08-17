@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { sub } from 'date-fns'
 
 const initialState = [
@@ -50,29 +50,8 @@ const postsSlice = createSlice({
     name: 'posts',
     initialState: initialState,
     reducers: {
-        addPost: {
-            reducer(state, action) {
-                state.push(action.payload)
-            },
-            prepare(content) {
-                return {
-                    payload: {
-                        id: nanoid(),
-                        date: new Date().toISOString(),
-                        user: {
-                            name: 'Maya',
-                            location: 'Pandora'
-                        },
-                        content,
-                        likes: 0,
-                        showComments: false,
-                        comments: {
-                            total: 0,
-                            individualComments: []
-                        }
-                    }
-                }
-            }
+        addPost(state, action) {
+            state.push(action.payload)
         },
         incrementPostLike(state, action) {
             const {postId} = action.payload

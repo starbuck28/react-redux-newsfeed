@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { addPost } from './postsSlice'
 import profilePicture from '../../maya.jpg'
 import styled from 'styled-components'
+import { getRandomId, getCurrentTimestamp } from '../../transformers'
 
 const PostForm = () => {
     const [content, setContent] = useState("")
@@ -13,7 +14,23 @@ const PostForm = () => {
     const onPostClicked = (event) => {
         event.preventDefault()
         if (content) {
-            dispatch(addPost(content))
+            const post = {
+                id: getRandomId(),
+                date: getCurrentTimestamp(),
+                user: {
+                    name: 'Maya',
+                    location: 'Pandora'
+                },
+                content,
+                likes: 0,
+                showComments: false,
+                comments: {
+                    total: 0,
+                    individualComments: []
+                }
+            }
+
+            dispatch(addPost(post))
             setContent("")
         }
     }

@@ -3,7 +3,6 @@ import CommentForm from './CommentForm'
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { sub } from 'date-fns'
-// import { getCurrentTimestamp } from './transformers';
 
 configure({ adapter: new Adapter() })
 

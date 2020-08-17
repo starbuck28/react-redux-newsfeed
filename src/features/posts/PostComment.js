@@ -16,7 +16,7 @@ const PostComment = ({ postId, comment }) => {
                 </SplitInfo>
                 <StyledLocation data-testid="user-location">{comment.user.location}</StyledLocation>
                 {!comment.showCommentForm &&
-                    <span data-testid="user-comment">{comment.content}</span>
+                    <StyledCommentText data-testid="user-comment">{comment.content}</StyledCommentText>
                 }
                 {comment.showCommentForm && 
                     <EditCommentForm data-testid="edit-comment-form" postId={postId} comment={comment}/>
@@ -64,5 +64,9 @@ const StyledLocation = styled.div`
     color: #5286F2;
     padding-bottom: 3px;
     `
+
+const StyledCommentText = styled.span`
+    overflow-wrap: anywhere;
+`
 
 export default PostComment
