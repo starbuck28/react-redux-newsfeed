@@ -53,7 +53,7 @@ const StyledPhoto = styled.img`
 
 const StyledInput = styled.input`
     flex-grow: 4;
-    padding-left: 15px;
+    padding: 15px;
     border-radius: 35px;
     margin-left: 10px;
     border: 1px solid #979AA8;
