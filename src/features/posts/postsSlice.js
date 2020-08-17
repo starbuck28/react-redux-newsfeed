@@ -36,7 +36,7 @@ const initialState = [
                         name: 'Maya',
                         location: 'Pandora'
                     },
-                    date: sub(new Date(), { minutes: 20 }).toISOString(),
+                    date: sub(new Date(), { minutes: 7 }).toISOString(),
                     content: 'Seriously, where are you?',
                     likes: 0,
                     showCommentForm: false

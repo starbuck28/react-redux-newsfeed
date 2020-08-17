@@ -5,6 +5,6 @@ export const orderByMostRecent = (array) => {
 }
 
 export const getTimePeriod = (timestamp) => {
-    date = parseISO(timestamp)
+    const date = parseISO(timestamp)
     return formatDistanceToNow(date)
 }

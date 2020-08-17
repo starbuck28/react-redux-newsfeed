@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import PostReactions from './PostReactions'
 import { sub } from 'date-fns'
 import { orderByMostRecent } from 'transformers'
+import { incrementCommentLike } from './postsSlice';
 
 configure({ adapter: new Adapter() })
 
@@ -11,8 +12,10 @@ jest.mock('transformers', () => ({
     orderByMostRecent: jest.fn()
 }))
 
+const mockDispatch = jest.fn()
+
 jest.mock('react-redux', () => ({
-    useDispatch: jest.fn()
+    useDispatch: () => mockDispatch
 }))
 
 const listOfComments = [
@@ -140,5 +143,61 @@ describe('PostReactions', () => {
         })
 
         expect(wrapper.find('[data-testid="rendered-comments"]').children()).toHaveLength(0)
+    })
+
+    it('increments likes when like button is clicked', () => {
+        const post = {
+            id: '1',
+            date: sub(new Date(), { minutes: 2 }).toISOString(),
+            user: {
+                name: 'Cookie Monster',
+                location: 'Sesame Street'
+            },
+            content: 'Me want cookie.',
+            likes: 5,
+            showComments: false,
+            comments: {
+                likes: 0,
+                individualComments: listOfComments
+            }
+        }
+    
+        let wrapper = shallow(<PostReactions post={post}/>)
+
+        orderByMostRecent.mockImplementation(() => {
+            return orderedListOfComments
+        })
+
+        wrapper.find('[data-testid="like-button"]').simulate('click')
+
+        expect(mockDispatch).toHaveBeenCalledWith({"payload": {"postId": "1"}, "type": "posts/incrementPostLike"})
+    })
+
+    it('toggles the comment section on comment button click', () => {
+        const post = {
+            id: '1',
+            date: sub(new Date(), { minutes: 2 }).toISOString(),
+            user: {
+                name: 'Cookie Monster',
+                location: 'Sesame Street'
+            },
+            content: 'Me want cookie.',
+            likes: 5,
+            showComments: false,
+            comments: {
+                likes: 0,
+                individualComments: listOfComments
+            }
+        }
+    
+        let wrapper = shallow(<PostReactions post={post}/>)
+
+        orderByMostRecent.mockImplementation(() => {
+            return orderedListOfComments
+        })
+
+        wrapper.find('[data-testid="post-comment-button"]').simulate('click')
+
+        expect(mockDispatch).toHaveBeenCalledWith({"payload": {"postId": "1", showComments: true}, "type": "posts/toggleCommentSection"})
     })
 })
