@@ -11,7 +11,7 @@
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   background: #DAE1EA;
-  width: 100%git;
+  width: 100%;
   padding-top: 12.5px;
 
   @media only screen and (min-width: 768px) {
