@@ -18,14 +18,25 @@ const EditCommentForm = ({ postId, comment }) => {
 
     return (
         <form onSubmit={onEditedCommentSubmit}>
-            <input 
+            <StyledInput 
                 type="text"
                 id="editComment"
                 value={content}
                 onChange={onTextChanged}
-            ></input>
+            ></StyledInput>
         </form>
     )
 }
+
+const StyledInput = styled.input`
+    flex-grow: 4;
+    padding: 15px;
+    border-radius: 35px;
+    border: 1px solid #979AA8;
+
+    &:focus {
+    outline: none;
+    }
+    `   
 
 export default EditCommentForm
