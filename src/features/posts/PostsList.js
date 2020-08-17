@@ -18,6 +18,7 @@ const PostsList = () => {
 
 const StyledList = styled.section`
     width: 95%;
+    margin-bottom: 12.5px;
     `
 
 export default PostsList

@@ -10,12 +10,15 @@ const PostForm = () => {
     
     const onTextChanged = event => setContent(event.target.value)
 
-    const onPostClicked = () => {
+    const onPostClicked = (event) => {
+        event.preventDefault()
         if (content) {
             dispatch(addPost(content))
             setContent("")
         }
     }
+
+    const onEnterKeyPressed = (event) => {event.key === 'Enter' && event.preventDefault()}
 
     return (
         <StyledSection>
@@ -27,7 +30,8 @@ const PostForm = () => {
                         id="postContent"
                         placeholder="What's on your mind?"
                         value={content}
-                        onChange={onTextChanged}>
+                        onChange={onTextChanged}
+                        onKeyPress={onEnterKeyPressed}>
                     </StyledInput>
                 </StyledInputDiv>
                 <Divider></Divider>

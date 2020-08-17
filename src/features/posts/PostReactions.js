@@ -48,7 +48,7 @@ const PostReactions = ({ post }) => {
 }
 
 const StyledReactions = styled.div`
-    padding: 10px 20px 20px 20px;
+    padding: 10px 20px 10px 20px;
     background: #f7f7f7;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
