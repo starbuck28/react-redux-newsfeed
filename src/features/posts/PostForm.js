@@ -37,7 +37,7 @@ const PostForm = () => {
                 <Divider></Divider>
                 <StyledButtonSection>
                     <StyledButton 
-                        className="post-button" 
+                        data-testid="post-submit-button" 
                         type="button" 
                         onClick={onPostClicked}>Post It</StyledButton>
                 </StyledButtonSection>
@@ -61,7 +61,7 @@ const ProfilePicture = styled.img`
     border-radius: 50%;
     `
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
     border: none;
     margin-left: 20px;
     font-size: 18px;

@@ -4,7 +4,6 @@ import Adapter from 'enzyme-adapter-react-16';
 import PostReactions from './PostReactions'
 import { sub } from 'date-fns'
 import { orderByMostRecent } from 'transformers'
-import { incrementCommentLike } from './postsSlice';
 
 configure({ adapter: new Adapter() })
 
