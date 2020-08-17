@@ -7,16 +7,16 @@ const SinglePost = ({ post }) => {
     return (
         <StyledPost>
             <StyledDisplayInfo>
-                <PostProfile className="profile-section" user={post.user.name} location={post.user.location} date={post.date}/>
-                <StyledContent className="post-content">{post.content}</StyledContent>
+                <PostProfile data-testid="profile-section" user={post.user.name} location={post.user.location} date={post.date}/>
+                <StyledContent data-testid="post-content">{post.content}</StyledContent>
                 <StyledCounterDiv>
-                    <span className="likes">{post.likes} Likes</span>
+                    <span data-testid="likes">{post.likes} Likes</span>
                         <Dot>&#183;</Dot>
                     <span>{post.comments.total} Comments</span>
                 </StyledCounterDiv>
             </StyledDisplayInfo>
             <Divider></Divider>
-            <PostReactions className="reactions" post={post} />
+            <PostReactions data-testid="reactions" post={post} />
         </StyledPost>
     )
 }

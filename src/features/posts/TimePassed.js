@@ -1,16 +1,15 @@
 import React from 'react'
-import { parseISO, formatDistanceToNow } from 'date-fns'
 import styled from 'styled-components'
+import { getTimePeriod } from '../../transformers'
 
 const TimePassed = ({ timestamp }) => {
     let timePassed = ''
     if (timestamp) {
-        const date = parseISO(timestamp)
-        const timePeriod = formatDistanceToNow(date)
+        const timePeriod = getTimePeriod(timestamp)
         timePassed = `${timePeriod} ago`
     }
     return (
-        <StyledTime>{timePassed}</StyledTime>
+        <StyledTime data-testid="time-period">{timePassed}</StyledTime>
     )
 }
 

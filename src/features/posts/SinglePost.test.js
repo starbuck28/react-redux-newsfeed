@@ -15,7 +15,11 @@ describe('Single Post', () => {
             location: 'Sesame Street'
         },
         content: 'Me want cookie.',
-        likes: 5
+        likes: 5,
+        comments: {
+            total: 0, 
+            individualComments: []
+        }
     }
     let wrapper
     
@@ -24,18 +28,18 @@ describe('Single Post', () => {
     })
 
     it('renders the correct profile information', () => {
-        expect(wrapper.find('.profile-section').props()).toEqual({className: "profile-section", user: post.user.name, location: post.user.location, date: post.date})
+        expect(wrapper.find('[data-testid="profile-section"]').props()).toEqual({"data-testid": "profile-section", user: post.user.name, location: post.user.location, date: post.date})
     })
 
     it('renders the correct content', () => {
-        expect(wrapper.find('.post-content').text()).toEqual(post.content)
+        expect(wrapper.find('[data-testid="post-content"]').text()).toEqual(post.content)
     })
 
     it('renders the correct likes', () => {
-        expect(wrapper.find('.likes').text()).toEqual(`${post.likes} Likes`)
+        expect(wrapper.find('[data-testid="likes"]').text()).toEqual(`${post.likes} Likes`)
     })
 
     it('renders reactions with correct props', () => {
-        expect(wrapper.find('.reactions').prop('post')).toEqual(post)
+        expect(wrapper.find('[data-testid="reactions"]').prop('post')).toEqual(post)
     })
 })
