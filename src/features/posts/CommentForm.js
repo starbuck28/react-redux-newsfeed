@@ -4,6 +4,7 @@ import { nanoid } from '@reduxjs/toolkit'
 import { addComment } from './postsSlice'
 import profilePicture from '../../maya.jpg'
 import styled from 'styled-components'
+import { getCurrentTimestamp, getRandomId } from '../../transformers'
 
 const CommentForm = ({ post }) => {
     const [content, setContent] = useState("")
@@ -14,21 +15,22 @@ const CommentForm = ({ post }) => {
     const onCommentSubmit = (event) => {
         event.preventDefault()
         let comment = {
-            id: nanoid(),
+            id: getRandomId(),
             user: {
                 name: 'Maya',
                 location: 'Pandora'
             },
-            date: new Date().toISOString(),
+            date: getCurrentTimestamp(),
             content,
-            likes: 0
+            likes: 0,
+            showCommentForm: false
         }
         dispatch(addComment({postId: post.id, comment}))
         setContent("")
     }
 
     return (
-        <StyledForm onSubmit={onCommentSubmit}>
+        <StyledForm data-testid="comment-form" onSubmit={onCommentSubmit}>
             <StyledPhoto src={profilePicture} alt="profile"/>
             <StyledInput 
                 type="text"
