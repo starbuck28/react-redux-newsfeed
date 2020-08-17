@@ -13,8 +13,10 @@
   background: #DAE1EA;
   width: 100%;
   padding-top: 12.5px;
-
-  @media only screen and (min-width: 768px) {
-    width: 500px;
-  } 
 }
+
+@media only screen and (min-width: 768px) {
+  .App-header {
+    width: 500px;
+  }
+} 
