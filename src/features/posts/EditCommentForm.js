@@ -33,7 +33,9 @@ const StyledInput = styled.input`
     padding: 15px;
     border-radius: 35px;
     border: 1px solid #979AA8;
-
+    margin-top: 10px;
+    width: 90%;
+    
     &:focus {
     outline: none;
     }
