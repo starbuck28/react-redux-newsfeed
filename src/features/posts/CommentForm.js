@@ -43,6 +43,7 @@ const CommentForm = ({ post }) => {
 const StyledForm = styled.form`
     display: flex;
     margin-top: 10px;
+    align-items: center;
     `
 
 const StyledPhoto = styled.img`
