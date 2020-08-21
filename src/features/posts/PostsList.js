@@ -1,13 +1,11 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import SinglePost from './SinglePost'
 import styled from 'styled-components'
 import { orderByMostRecent } from '../../transformers'
 
-const PostsList = () => {
-    const posts = useSelector(state => state.posts)
+const PostsList = ({posts}) => {
 
-    const renderedPosts = orderByMostRecent(posts).map(post => (
+    const renderedPosts = orderByMostRecent(posts).map((post) => (
         <SinglePost key={post.id} post={post}/>
     ))
 

@@ -1,50 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { sub } from 'date-fns'
 
-const initialState = [
-    { 
-        id: '1',
-        date: sub(new Date(), { minutes: 22 }).toISOString(),
-        user: {
-            name: 'Maya',
-            location: 'Pandora'
-        },
-        content: 'This is my very first post!',
-        likes: 0,
-        showComments: false,
-        comments: {
-            total: 0, 
-            individualComments: []
-        }
-    },
-    {
-        id: '2',
-        date: sub(new Date(), { minutes: 15 }).toISOString(),
-        user: {
-            name: 'Maya',
-            location: 'Pandora'
-        },
-        content: 'Claptrap, where are you?',
-        likes: 0,
-        showComments: false,
-        comments: {
-            total: 1,
-            individualComments: [
-                { 
-                    id: '123',
-                    user: {
-                        name: 'Maya',
-                        location: 'Pandora'
-                    },
-                    date: sub(new Date(), { minutes: 7 }).toISOString(),
-                    content: 'Seriously, where are you?',
-                    likes: 0,
-                    showCommentForm: false
-                }
-            ]
-        }
-    }
-]
+const initialState = []
 
 const postsSlice = createSlice({
     name: 'posts',
@@ -128,6 +84,10 @@ const postsSlice = createSlice({
             if (existingPost) {
                 existingPost.showComments = showComments
             }
+        },
+        updatePosts(state, action) {
+            const {posts} = action.payload
+            return posts
         }
     }
 })
@@ -140,7 +100,8 @@ export const {
     editComment, 
     toggleEditForm, 
     deleteComment,
-    toggleCommentSection } = postsSlice.actions
+    toggleCommentSection,
+    updatePosts } = postsSlice.actions
 
 export default postsSlice.reducer
 
